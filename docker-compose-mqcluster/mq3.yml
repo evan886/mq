@@ -1,0 +1,33 @@
+version: '3.1'  
+services:
+  rabbitmq:
+    image: rabbitmq:3.6.16-management-alpine
+
+    ports:
+      - "5672:5672"
+      - "4369:4369"
+      #- "1883:1883"
+      - "15672:15672"
+      - "25672:25672"
+
+    container_name: rabbitmqCluster03
+
+    hostname: rabbitmq03
+    extra_hosts:
+      - "rabbitmq01:172.31.127.221"
+      - "rabbitmq02:172.31.127.222"
+    environment:
+
+      RABBITMQ_ERLANG_COOKIE: 'rabbitmqCookie'   
+      RABBITMQ_DEFAULT_VHOST: /
+      RABBITMQ_DEFAULT_USER: lxtxadmin
+      RABBITMQ_DEFAULT_PASS: 36tSNTTo886Gq
+      RABBITMQ_LOGS: /var/lib/rabbitmq/rabbitmq.log
+      RABBITMQ_SASL_LOGS: /var/lib/rabbitmq/rabbitmq-sasl.log
+      CLUSTERED: 'true'
+      CLUSTER_WITH: rabbit1
+      RAM_NODE: 'true'
+
+    volumes:
+      - ./data/rabbitmq:/var/lib/rabbitmq
+    restart: always  

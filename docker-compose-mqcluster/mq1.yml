@@ -1,0 +1,30 @@
+version: '3.1'  
+services:
+  rabbitmq:
+    image: rabbitmq:3.6.16-management-alpine
+    ports:
+      - "5672:5672"
+      - "4369:4369"
+      #- "1883:1883"
+      - "15672:15672"
+      - "25672:25672"
+
+    container_name: rabbitmqCluster01
+
+    hostname: rabbitmq01
+    extra_hosts:
+      #- "rabbitmq01:192.168.10.211"#不要加上自己，不然会老是重启的
+      - "rabbitmq02:172.31.127.222" 
+      - "rabbitmq03:172.31.127.223" 
+    environment:
+
+      RABBITMQ_ERLANG_COOKIE: 'rabbitmqCookie'   
+      RABBITMQ_DEFAULT_VHOST: /
+      RABBITMQ_DEFAULT_USER: lxtxadmin
+      RABBITMQ_DEFAULT_PASS: 36tSNTTo886Gq
+      RABBITMQ_LOGS: /var/lib/rabbitmq/rabbitmq.log
+      RABBITMQ_SASL_LOGS: /var/lib/rabbitmq/rabbitmq-sasl.log
+
+    volumes:
+      - ./data/rabbitmq:/var/lib/rabbitmq
+    restart: always  
