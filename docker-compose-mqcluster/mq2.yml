@@ -20,7 +20,7 @@ services:
       RABBITMQ_ERLANG_COOKIE: 'rabbitmqCookie'   
       RABBITMQ_DEFAULT_VHOST: /
       RABBITMQ_DEFAULT_USER: lxtxadmin
-      RABBITMQ_DEFAULT_PASS: 36tSNTTo886Gq
+      RABBITMQ_DEFAULT_PASS: 36o886Gq
       RABBITMQ_LOGS: /var/lib/rabbitmq/rabbitmq.log
       RABBITMQ_SASL_LOGS: /var/lib/rabbitmq/rabbitmq-sasl.log
       CLUSTERED: 'true'
